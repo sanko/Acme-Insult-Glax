@@ -13,7 +13,7 @@
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : 2
    },
-   "name" : "Acme-Insult",
+   "name" : "Acme-Insult-Glax",
    "no_index" : {
       "directory" : [
          "t",
@@ -82,13 +82,13 @@
    "release_status" : "unstable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/sanko/Acme-Insult/issues"
+         "web" : "https://github.com/sanko/Acme-Insult-Glax/issues"
       },
-      "homepage" : "https://github.com/sanko/Acme-Insult",
+      "homepage" : "https://github.com/sanko/Acme-Insult-Glax",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/sanko/Acme-Insult.git",
-         "web" : "https://github.com/sanko/Acme-Insult"
+         "url" : "https://github.com/sanko/Acme-Insult-Glax.git",
+         "web" : "https://github.com/sanko/Acme-Insult-Glax"
       }
    },
    "version" : "1.0",

@@ -1,6 +1,6 @@
 use lib '../lib';
 use v5.36;
-use Acme::Insult;
+use Acme::Insult::Glax;
 use Getopt::Long;
 use Pod::Usage;
 use open qw[:std :encoding(UTF-8)];
@@ -16,32 +16,29 @@ use open qw[:std :encoding(UTF-8)];
 #
 my $raw = 0;
 
-sub _echo ($slip) {    # JSON::Tiny is loaded in Acme::Free::Advice::Unsolicited anyway
-    $raw ? JSON::Tiny::encode_json($slip) : $slip;
+sub _echo ($slip) {    # JSON::Tiny is loaded in Acme::Insult::Glax anyway
+    $raw ? JSON::Tiny::encode_json( {%$slip} ) : $slip;
 }
 GetOptions( \my %h, 'who=s', 'template=s', 'plural!', 'help' => sub { pod2usage( -exitval => 1 ) }, 'json!' => \$raw, 'adjective!', 'sfw!' );
 $h{lang} = 'en_corporate' if delete $h{sfw};
-my $shade
-    = delete $h{adjective} ? ( $raw ? Acme::Insult::_adjective( $h{lang} ) : Acme::Insult::adjective( $h{lang} ) ) :
-    $raw                   ? Acme::Insult::_insult(%h) :
-    Acme::Insult::insult(%h);
+my $shade = delete $h{adjective} ? Acme::Insult::Glax::adjective( $h{lang} ) : Acme::Insult::Glax::insult(%h);
 exit !( $shade ? say _echo($shade) : !say( $raw ? 'null' : '' ) );
 __END__
 
 =head1 NAME
 
-insult - Generate insults on the terminal
+glax_insult - Generate insults on the terminal
 
 =head1 SYNOPSIS
 
-    insult                                  # generate a random insult
-    insult -template='...'                  # generate insults with a specific format
-    insult -json                            # insult someone if you're a robot
-    insult -who John                        # insult someone by name
-    insult -plural -who "John and Alex"     # insult multiple people
-    insult -sfw                             # insult someone with workplace jargon
-    insult -adjective                       # generate a single adjective
-    insult -help                            # get help
+    glax_insult                                  # generate a random insult
+    glax_insult -template='...'                  # generate insults with a specific format
+    glax_insult -json                            # insult someone if you're a robot
+    glax_insult -who John                        # insult someone by name
+    glax_insult -plural -who "John and Alex"     # insult multiple people
+    glax_insult -sfw                             # insult someone with workplace jargon
+    glax_insult -adjective                       # generate a single adjective
+    glax_insult -help                            # get help
 
 =head1 OPTIONS
 
@@ -55,7 +52,7 @@ insult - Generate insults on the terminal
 
 =head1 DESCRIPTION
 
-This script wraps Acme::Insult.
+This script wraps Acme::Insult::Glax.
 
 =head1 LICENSE & LEGAL
 
