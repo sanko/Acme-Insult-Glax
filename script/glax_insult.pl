@@ -16,8 +16,8 @@ use open qw[:std :encoding(UTF-8)];
 #
 my $raw = 0;
 
-sub _echo ($slip) {    # JSON::Tiny is loaded in Acme::Insult::Glax anyway
-    $raw ? JSON::Tiny::encode_json( {%$slip} ) : $slip;
+sub _echo ($insult) {    # JSON::Tiny is loaded in Acme::Insult::Glax anyway
+    $raw ? JSON::Tiny::encode_json( {%$insult} ) : $insult;
 }
 GetOptions( \my %h, 'who=s', 'template=s', 'plural!', 'help' => sub { pod2usage( -exitval => 1 ) }, 'json!' => \$raw, 'adjective!', 'sfw!' );
 $h{lang} = 'en_corporate' if delete $h{sfw};
